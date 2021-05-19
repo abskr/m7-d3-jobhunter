@@ -1,19 +1,26 @@
 import React from 'react';
 import { Button, Card } from 'react-bootstrap'
 import { withRouter } from 'react-router-dom'
-import {addToFavAction} from '../reduxFolder/actions/index.js'
+import {addToFavAction, removeFromFavAction} from '../reduxFolder/actions/index.js'
 import {connect} from 'react-redux'
 
-const mapStateToProps = state => {
-  return state
-}
-
-const mapDispatchToProps = dispatch => ({
-  addToFav: jobObj =>
-    dispatch(addToFavAction(jobObj))
+const mapStateToProps = state => ({
+  favJob: state.fav.jobs
 })
 
-function JobCard({history, jobDesc, submitJobId, addToFav}) {
+const mapDispatchToProps = dispatch => ({
+  addToFav: (jobObj) => dispatch(addToFavAction(jobObj)),
+  removeFromFav: (jobObj) => dispatch(removeFromFavAction(jobObj))
+})
+
+function JobCard({
+  history,
+  jobDesc,
+  submitJobId,
+  addToFav,
+  removeFromFav, 
+  favJobs,
+}) {
   return (
     <Card className='mb-3'>
       <Card.Header>{jobDesc.company}</Card.Header>
@@ -30,12 +37,14 @@ function JobCard({history, jobDesc, submitJobId, addToFav}) {
         >
           Apply now!
         </Button>
-        <Button
-          variant='danger'
-          onClick={() => addToFav(jobDesc)}
-        >
-          Add to favorite
-        </Button>
+
+          <Button variant='danger' onClick={() => addToFav(jobDesc)}>
+            Add to favorite
+          </Button>
+          <Button variant='outline-danger' onClick={() => removeFromFav(jobDesc)}>
+            Add to favorite
+          </Button>
+ 
       </Card.Body>
     </Card>
   );
