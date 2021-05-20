@@ -9,7 +9,8 @@ const mainReducers = (state = initialState, action) => {
           ...state.fav,
           jobs: state.fav.jobs.concat(action.payload)
         }
-      };
+      }
+    
     case 'REMOVE_JOB_FROM_FAV':
       return {
         ...state,

@@ -14,13 +14,15 @@ const FavoritesPage = (props) => {
       <RowContainer>
         <Col xs={12} md={{ span: 8, offset: 2 }}>
           {props.favJobs &&
-            props.favJobs.map((result) => (
-              <JobCard
+            props.favJobs.map((result) => {
+              const isFav = props.favJobs.some(f => f.id === result.id)
+              return <JobCard
                 submitJobId={props.submitJobId}
                 key={result.id}
                 jobDesc={result}
-              />
-            ))}
+                isFav={isFav}
+              />;
+            })}
         </Col>
       </RowContainer>
     </Container>

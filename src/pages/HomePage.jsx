@@ -33,9 +33,11 @@ function HomePage(props) {
             />
             <Form.Text className='text-muted'>(ex. Frontend, Ruby)</Form.Text>
           </Form.Group>
-          <Button variant='outline-primary' type='submit'>
-            Submit
-          </Button>
+          <FlexBox>
+            <Button variant='outline-primary' type='submit'>
+              Submit
+            </Button>
+          </FlexBox>
         </Form>
       </SearchBox>
     </MainContainer>
@@ -54,11 +56,19 @@ const MainContainer = styled(Container)`
 const SearchBox = styled.div`
   display: flex;
   justify-content: center;
-  max-width: 80%;
-  min-width: 220px;
+  align-items: center;
+  width: 400px;
+  height: 300px;
   padding: 5px;
-  border: solid 1px;
   border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+`;
+
+const FlexBox = styled.div`
+  display: flex;
+  justify-content: center;
+  margin: 5px 0px;
+  padding: 0;
 `
 
 export default withRouter(HomePage);

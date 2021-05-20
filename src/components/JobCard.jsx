@@ -20,10 +20,13 @@ function JobCard({
   addToFav,
   removeFromFav, 
   favJobs,
+  isFav
 }) {
   return (
     <Card className='mb-3'>
-      <Card.Header>{jobDesc.company}</Card.Header>
+      <Card.Header>
+        {jobDesc.company} <small>({jobDesc.location})</small>{' '}
+      </Card.Header>
       <Card.Body>
         <Card.Title>{jobDesc.title}</Card.Title>
         {/* <div
@@ -38,13 +41,25 @@ function JobCard({
           Apply now!
         </Button>
 
-          <Button variant='danger' onClick={() => addToFav(jobDesc)}>
-            Add to favorite
+        {!isFav && (
+          <Button
+            className='mx-2'
+            variant='danger'
+            onClick={() => addToFav(jobDesc)}
+          >
+            ✔
           </Button>
-          <Button variant='outline-danger' onClick={() => removeFromFav(jobDesc)}>
-            Add to favorite
+        )}
+
+        {isFav && (
+          <Button
+            className='mx-2'
+            variant='outline-danger'
+            onClick={() => removeFromFav(jobDesc)}
+          >
+            ❌
           </Button>
- 
+        )}
       </Card.Body>
     </Card>
   );
